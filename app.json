@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "projetoCarrinho",
+    "slug": "projetoCarrinho",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "projetoCarrinho"
+}
