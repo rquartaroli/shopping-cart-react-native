@@ -2,6 +2,7 @@ import React from 'react';
 import { RectButtonProps } from 'react-native-gesture-handler';
 import { 
   Container,
+  WrapperImageItem,
   ImageItem,
   WrapperValue,
   ScrollTitleCard,
@@ -20,7 +21,9 @@ interface Props extends RectButtonProps {
 export function CardItem({pathImage, titleCard, valueCard, onPress, ...rest}: Props) {
   return (
     <Container>
-      <ImageItem source={{ uri: pathImage }} />
+      <WrapperImageItem onPress={onPress}>
+        <ImageItem source={{ uri: pathImage }} />
+      </WrapperImageItem>
 
       <ScrollTitleCard>
         <TitleCard>{titleCard}</TitleCard>

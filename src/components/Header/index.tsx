@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { Feather } from '@expo/vector-icons';
 import { 
@@ -16,6 +16,9 @@ import theme from '../../global/styles/theme';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../../routes/app.routes';
 import { useItensCart } from '../../hooks/itensCart';
+import { StockDTO } from '../../dtos/StockDTO';
+import api from '../../services/api';
+import { Alert } from 'react-native';
 
 interface ItensCart {
   id: number;
@@ -33,10 +36,38 @@ interface Props {
 }
 
 export function Header({ titleHeader, backButton = false }: Props) {
+  let stock = [
+    {
+      "id": 1,
+      "amount": 3
+    },
+    {
+      "id": 2,
+      "amount": 5
+    },
+    {
+      "id": 3,
+      "amount": 2
+    },
+    {
+      "id": 4,
+      "amount": 1
+    },
+    {
+      "id": 5,
+      "amount": 5
+    },
+    {
+      "id": 6,
+      "amount": 10
+    }
+  ];
+
+  const [reloadItensStockData, setReloadItensStockData] = useState<StockDTO[]>(stock);
 
   const navigation = useNavigation<itemScreenProp>();
 
-  const {itensInCart} = useItensCart();
+  const {itensInCart, setStockItensData} = useItensCart();
 
   function handleBack() {
     navigation.goBack();
@@ -44,6 +75,21 @@ export function Header({ titleHeader, backButton = false }: Props) {
 
   function navigateCart() {
     navigation.navigate('ItensCart');
+  }
+
+  function handleReloadItensStockData() {
+    
+    reloadItensStockData.forEach(async (itemStock) => {
+        await api.put(`/stock/${itemStock.id}`, {
+          amount: itemStock.amount,
+          id: itemStock.id
+        });
+      }
+    );
+
+    setStockItensData(reloadItensStockData);
+    setReloadItensStockData(stock);
+    Alert.alert('Recarregamento de dados concluído', 'recarregamento da base de dados realizado com sucesso');
   }
 
   return (
@@ -81,9 +127,9 @@ export function Header({ titleHeader, backButton = false }: Props) {
           </WrapperQtdeItensCart>
         }
 
-        <IconLogout onPress={() => {}}>
+        <IconLogout onPress={handleReloadItensStockData}>
           <Feather 
-            name="log-out"
+            name="rotate-cw"
             size={32}
             color={theme.colors.text}
           />

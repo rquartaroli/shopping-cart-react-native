@@ -1,6 +1,6 @@
+import styled from 'styled-components/native';
 import { RectButton } from 'react-native-gesture-handler';
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
-import styled from 'styled-components/native';
 
 export const Container = styled.View`
   width: 150px;
@@ -11,6 +11,10 @@ export const Container = styled.View`
   background-color: ${({theme}) => theme.colors.primary};
   border: 1px solid ${({theme}) => theme.colors.text};
   border-radius: 4px;
+`;
+
+export const WrapperImageItem = styled(RectButton)`
+  width: 100%;
 `;
 
 export const ImageItem = styled.Image`
@@ -24,8 +28,6 @@ export const WrapperValue = styled.View`
   justify-content: space-between;
   align-items: center;
   padding: ${RFPercentage(0.5)}px;
-
-  /* border: 1px solid blue; */
 `;
 
 export const ScrollTitleCard = styled.ScrollView`
@@ -49,7 +51,6 @@ export const TextCard = styled.Text`
 `;
 
 export const AddItem = styled(RectButton)`
-  /* width: 20%; */
   justify-content: center;
   align-items: center;
   padding: 4px;

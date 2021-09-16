@@ -13,9 +13,7 @@ export const Container = styled.View`
   background-color: ${({theme}) => theme.colors.primary};
 `;
 
-export const ButtonBack = styled(BorderlessButton)`
-  
-`;
+export const ButtonBack = styled(BorderlessButton)``;
 
 export const WrapperLogo = styled.Text`
   font-family: ${({theme}) => theme.fonts.primary_700};
@@ -24,12 +22,9 @@ export const WrapperLogo = styled.Text`
 `;
 
 export const WrapperCart = styled.View`
-  /* width: 100px; */
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-
-  /* border: 1px solid red; */
 `;
 
 export const IconCart = styled(BorderlessButton)``;

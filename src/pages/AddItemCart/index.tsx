@@ -15,8 +15,6 @@ import {
   IconPlus,
   TitleItem,
   WrapperQuantity,
-  CloseModal,
-  TitleModal,
   Hr,
 } from './styles';
 import { RectButtonProps } from 'react-native-gesture-handler';
@@ -29,7 +27,6 @@ interface ItensForCart {
   title: string;
   price: number;
   image: string;
-  // amount: number;
 }
 
 interface Props extends RectButtonProps {
@@ -42,7 +39,7 @@ export function AddItemCart({ closeModal, idItemAdd, ...rest }: Props) {
   const [itensForCart, setItensForCart] = useState<ItensForCart>({} as ItensForCart);
 
   const { 
-    itensCartData, 
+    productsItensData, 
     validateItensAmount,
     addItensCart,
   } = useItensCart();
@@ -82,7 +79,7 @@ export function AddItemCart({ closeModal, idItemAdd, ...rest }: Props) {
   }
 
   useEffect(() => {
-    const response = itensCartData.find(item => item.id === idItemAdd);
+    const response = productsItensData.find(item => item.id === idItemAdd);
     
     const itemInScreen = {
       id: response?.id ? response?.id : 1,

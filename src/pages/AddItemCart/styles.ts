@@ -3,14 +3,11 @@ import { BorderlessButton, RectButton } from 'react-native-gesture-handler';
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 
 export const Container = styled.View`
-  /* flex: 1; */
   width: 100%;
   height: 80%;
-  /* justify-content: center; */
   align-items: center;
 
   background-color: #F5F5F5;
-  /* border: 4px solid green; */
 `;
 
 export const WrapperIconCancel = styled.View`
@@ -27,7 +24,6 @@ export const IconCancel = styled(BorderlessButton)`
 export const Content = styled.View`
   flex: 1;
   align-items: center;
-  /* border: 1px solid purple; */
 `;
 
 export const ImgItem = styled.Image`
@@ -39,14 +35,10 @@ export const ImgItem = styled.Image`
 export const ScrollTitle = styled.View`
   width: 70%;
   padding: ${RFPercentage(0)}px ${RFPercentage(1)}px ${RFPercentage(0.5)}px;
-  /* border-bottom-width: 1px; */
-  /* border-bottom-color: green; */
-  /* border: 1px solid green; */
 `;
 
 export const TitleItem = styled.Text`
   font-family: ${({theme}) => theme.fonts.primary_500};
-  /* border: 1px solid blue; */
 `;
 
 export const IconMinus = styled(BorderlessButton)`
@@ -58,7 +50,6 @@ export const InputQtdeItem = styled.TextInput`
   height: 30px;
   font-size: 14px;
   text-align: center;
-  /* border: 1px solid gray; */
   border-radius: 4px;
   background-color: ${({theme}) => theme.colors.text};
 `;
@@ -69,7 +60,6 @@ export const InputPriceItem = styled.TextInput`
   font-size: 16px;
   margin-left: ${RFValue(8)}px;
   text-align: center;
-  /* border: 1px solid gray; */
   border-radius: 4px;
   background-color: ${({theme}) => theme.colors.text};
 `;
@@ -83,7 +73,6 @@ export const WrapperQuantity = styled.View`
   justify-content: space-between;
   align-items: center;
   margin: ${RFPercentage(1.5)}px ${RFPercentage(0)}px;
-  /* border: 1px solid pink; */
 `;
 
 export const CloseModal = styled(RectButton)`

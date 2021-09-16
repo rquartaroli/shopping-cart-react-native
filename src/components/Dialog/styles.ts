@@ -24,9 +24,7 @@ export const Content = styled.View`
   border-radius: 4px;
 `;
 
-export const WrapperDialog = styled.View`
-
-`;
+export const WrapperDialog = styled.View``;
 
 export const Title = styled.Text`
   font-family: ${({theme}) => theme.fonts.primary_700};

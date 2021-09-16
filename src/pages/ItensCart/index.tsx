@@ -33,6 +33,7 @@ import { useItensCart } from '../../hooks/itensCart';
 import { Button } from '../../components/Button';
 import { Dialog } from '../../components/Dialog';
 import { formatNumber } from '../../util/format';
+import { Load } from '../../components/Load';
 
 interface ItensCart {
   id: number;
@@ -42,19 +43,13 @@ interface ItensCart {
   amount?: number;
 }
 
-// interface PropsQtde {
-//   id: number;
-//   qtde: number;
-// }
-
 export function ItensCart() {
   const [itensCart, setItensCart] = useState<ItensCart[]>([]);
   const [openDialogFinish, setOpenDialogFinish] = useState(false);
   const [openDialogRemoveItem, setOpenDialogRemoveItem] = useState(false);
   const [saveIdItemForRemove, setSaveIdItemForRemove] = useState(0);
-  // const [saveQtdeTotal, setSaveQtdeTotal] = useState(0);
-  // const [savePriceTotal, setSavePriceTotal] = useState(0);
-  // const [arrayQtde, setArrayQtde] = useState<PropsQtde>({} as PropsQtde);
+
+  const [loadFinish, setLoadFinish] = useState(false);
 
   const {itensInCart, validateItensAmount, removeItensCart, finishBuy} = useItensCart();
 
@@ -63,9 +58,7 @@ export function ItensCart() {
     const itemExists = updatedCart.find(item => item.id === itemId);
 
     let qtde = itemExists?.amount!;
-    // let qtde = qtdeItem;
     if(qtde > 1) {
-      // updateItensAmount((qtde - 1), itemId);
       const newAmount = qtde - 1;
 
       // Atualiza a quantidade do item solicitado
@@ -83,8 +76,6 @@ export function ItensCart() {
     
     let qtde = itemExists?.amount!;
 
-    // let qtde = qtdeItem;
-    // let itemValid = updateItensAmount((qtde + 1), itemId);
     let itemValid = validateItensAmount((qtde + 1), itemId);
 
     if(itemValid) {
@@ -107,10 +98,16 @@ export function ItensCart() {
     setOpenDialogRemoveItem(false);
   }
 
-  function handleFinishBuy() {
+  async function handleFinishBuy() {
+    setLoadFinish(true);
     setOpenDialogFinish(false);
-    finishBuy();
-    Alert.alert('Tudo pronto', 'Agora só falta efetuar o pagamento e os itens serão entregues á você!');
+    const result = await finishBuy();
+    if(result == 'Tudo pronto'){
+      Alert.alert('Tudo pronto', 'Agora só falta efetuar o pagamento e os itens serão entregues á você!');
+    } else {
+      Alert.alert('Excedeu o limite do estoque', result);
+    }
+    setLoadFinish(false);
   }
 
   function handleCloseDialog() {
@@ -142,13 +139,16 @@ export function ItensCart() {
           <TitleCartEmpty>Nenhum item no carrinho :(</TitleCartEmpty>
         </WrapperCartEmpty>
       </Container>
-    )
+    );
   }
 
   return(
     <Container>
       <Header titleHeader={'Itens carrinho'} backButton={true} />
-
+      {loadFinish 
+      ?
+      <Load />
+      :
       <ListItensCart>
         {itensCart.map(item => (
           <WrapperItemCart key={item.id}>
@@ -217,6 +217,7 @@ export function ItensCart() {
           </WrapperItemCart>
         ))}
       </ListItensCart>
+      }
 
       <Footer>
         <FooterContainerLeft>

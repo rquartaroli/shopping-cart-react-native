@@ -4,7 +4,6 @@ import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 
 export const Container = styled.View`
   flex: 1;
-  /* justify-content: center; */
   align-items: center;
 
   background-color: ${({theme}) => theme.colors.primary_light};
@@ -43,19 +42,15 @@ export const ContentItemCart = styled.View`
   align-items: center;
   border: 1px solid grey;
   border-radius: 4px;
-  /* border: 1px solid purple; */
 `;
 
 export const ContentItemLeft = styled.View`
   flex: 1;
   flex-direction: row;
   margin-right: 1px;
-  /* border: 1px solid yellow; */
 `;
 
-export const ContentItemRight = styled.View`
-  /* border: 1px solid purple; */
-`;
+export const ContentItemRight = styled.View``;
 
 
 export const ImageItem = styled.Image`
@@ -64,16 +59,12 @@ export const ImageItem = styled.Image`
 `;
 
 export const WrapperQtde = styled.View`
-  /* width: 150px; */
   flex: 1;
   justify-content: center;
   align-items: center;
-  /* border: 1px solid green; */
 `;
 
-export const ScrollTitleItem = styled.ScrollView`
-  
-`;
+export const ScrollTitleItem = styled.ScrollView``;
 
 export const ListItensCart = styled.ScrollView.attrs({
   showsVerticalScrollIndicator: false,
@@ -93,12 +84,10 @@ export const TitleTotal = styled.Text`
 `;
 
 export const WrapperIconsQtde = styled.View`
-  /* flex: 1; */
   flex-direction: row;
   width: 100%;
   justify-content: center;
   align-items: center;
-  /* border: 1px solid pink; */
 `;
 
 export const InputQtdeItem = styled.TextInput`
@@ -109,7 +98,6 @@ export const InputQtdeItem = styled.TextInput`
   text-align: center;
   border: 1px solid gray;
   border-radius: 4px;
-  /* background-color: gray; */
 `;
 
 export const InputPriceItem = styled.TextInput`
@@ -131,7 +119,6 @@ export const Footer = styled.View`
   width: 100%;
   height: 50px;
   flex-direction: row;
-  /* background-color: ${({theme}) => theme.colors.text}; */
 `;
 
 export const FooterContainerLeft = styled.View`

@@ -1,8 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Text } from 'react-native';
 import { CardItem } from '../../components/CardItem';
 import { Header } from '../../components/Header';
-import api from '../../services/api';
 import { 
   Container,
   Content, 
@@ -15,20 +13,15 @@ import { AddItemCart } from '../AddItemCart';
 import { useItensCart } from '../../hooks/itensCart';
 import { formatNumber } from '../../util/format';
 import { useFocusEffect } from '@react-navigation/native';
-
-interface PropsRes {
-  id: number;
-  title: string;
-  price: number;
-  image: string;
-};
+import { ProductDTO } from '../../dtos/ProductDTO';
+import { Load } from '../../components/Load';
 
 export function Dashboard() {
-  const [itensInStock, setItensInStock] = useState<PropsRes[]>([]);
+  const [itensInStock, setItensInStock] = useState<ProductDTO[]>([]);
   const [confirmItemModalOpen, setConfirmItemModalOpen] = useState(false);
   const [saveIdItemAdd, setSaveIdItemAdd] = useState(0);
 
-  const {itensCartData, stockItensData, addIdItemAdd} = useItensCart();
+  const {productsItensData, stockItensData, addIdItemAdd, loadingStock, setStockItensData} = useItensCart();
 
   function handleAddItemCart(id: number) {
     addIdItemAdd(id);
@@ -43,20 +36,19 @@ export function Dashboard() {
   function loadItensInStock() {
     const stockData = [...stockItensData];
 
-    const itensExistInStock: PropsRes[] = [];
+    const itensExistInStock: ProductDTO[] = [];
 
-    // VERIFICAR O QUE PODE SER FEITO COM ISSO 
     stockData.filter(item => {
 
       if(item.amount > 0) { // Seleciona apenas os itens existentes no estoque
-        itensCartData.find(itemCartData => {
+        productsItensData.find(productItensData => {
 
-          if(itemCartData.id === item.id) { 
+          if(productItensData.id === item.id) { 
             itensExistInStock.push({ // Armazena item existente em variável de estado para ser exibido na tela
-              id: itemCartData.id,
-              title: itemCartData.title,
-              image: itemCartData.image,
-              price: itemCartData.price,
+              id: productItensData.id,
+              title: productItensData.title,
+              image: productItensData.image,
+              price: productItensData.price,
             })
           }
             
@@ -65,34 +57,33 @@ export function Dashboard() {
     });
 
     setItensInStock(itensExistInStock);
-
-    // console.log('estoque disponível')
-    // console.log(itensExistInStock);
   }
 
   useEffect(() => {
     loadItensInStock();
-  },[]);
+  },[stockItensData]);
 
   useFocusEffect(useCallback(() => {
     loadItensInStock();
-  }, []));
+  }, [stockItensData]));
 
   return (
     <Container>
       <Header titleHeader="E-Store" />
 
-{itensInStock.length === 0 && 
-  <StockEmptyContainer>
-    <TextAlertStockEmpty>
-      Ops, lamentamos que esteja vendo essa mensagem, isso significa que nosso estoque esta vazio no momento, 
-      mas já estamos trabalhando para repor o mais rápido possível, obrigado pela preferência
-      e nos desculpe pelo transtorno!{'\n\n'}
-      <TextAlertStockEmpty isColorSecondary={true}>Dica: Tente novamente mais tarde, adoramos a sua companhia ;D</TextAlertStockEmpty>
-      
-    </TextAlertStockEmpty>
-  </StockEmptyContainer>
-}
+      {loadingStock ? <Load /> 
+      :
+      itensInStock.length === 0 ? 
+        <StockEmptyContainer>
+          <TextAlertStockEmpty>
+            Ops, lamentamos que esteja vendo essa mensagem, isso significa que nosso estoque esta vazio no momento, 
+            mas já estamos trabalhando para repor o mais rápido possível, obrigado pela preferência
+            e nos desculpe pelo transtorno!{'\n\n'}
+            <TextAlertStockEmpty isColorSecondary={true}>Dica: Tente novamente mais tarde, adoramos a sua companhia ;D</TextAlertStockEmpty>
+            
+          </TextAlertStockEmpty>
+        </StockEmptyContainer>
+      :
       <Content>
         <WrapperCardItem>
           {itensInStock.map(item => 
@@ -106,6 +97,7 @@ export function Dashboard() {
           )}
         </WrapperCardItem>
       </Content>
+      }
 
       {confirmItemModalOpen && 
         <ModalView>

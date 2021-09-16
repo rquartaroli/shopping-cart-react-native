@@ -8,7 +8,6 @@ interface TextAlertStockEmptyProps {
 
 export const Container = styled.View`
   flex: 1;
-  /* justify-content: center; */
   align-items: center;
 
   background-color: ${({theme}) => theme.colors.primary_light};
@@ -16,20 +15,14 @@ export const Container = styled.View`
 
 export const Content = styled.ScrollView`
   width: 100%;
-  /* height: 250px; */
   margin: ${RFPercentage(4)}px ${RFPercentage(0)}px;
   padding: ${RFPercentage(0)}px ${RFPercentage(2)}px;
-
-  /* background-color: ${({theme}) => theme.colors.primary}; */
-  /* border: 1px solid orange; */
 `;
 
 export const WrapperCardItem = styled.View`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-  /* background-color: white; */
-  /* border: 1px solid red; */
 `;
 
 export const ModalView = styled.View`
@@ -40,7 +33,6 @@ export const ModalView = styled.View`
   align-items: center;
 
   background-color: ${rgba(14, 14, 14, 0.8)};
-  /* border: 1px solid red; */
 `;
 
 export const StockEmptyContainer = styled.View`
