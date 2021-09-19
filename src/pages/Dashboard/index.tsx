@@ -21,7 +21,7 @@ export function Dashboard() {
   const [confirmItemModalOpen, setConfirmItemModalOpen] = useState(false);
   const [saveIdItemAdd, setSaveIdItemAdd] = useState(0);
 
-  const {productsItensData, stockItensData, addIdItemAdd, loadingStock, setStockItensData} = useItensCart();
+  const {productsItensData, stockItensData, addIdItemAdd, loadingStock} = useItensCart();
 
   function handleAddItemCart(id: number) {
     addIdItemAdd(id);

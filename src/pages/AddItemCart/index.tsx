@@ -60,7 +60,7 @@ export function AddItemCart({ closeModal, idItemAdd, ...rest }: Props) {
       return; 
     }
 
-    Alert.alert('Opa, você atingiu a quantidade máxima desse item no estoque');
+    Alert.alert('Limite excedido!', 'Você atingiu a quantidade máxima desse item no estoque');
     return;    
   }
 
@@ -69,7 +69,7 @@ export function AddItemCart({ closeModal, idItemAdd, ...rest }: Props) {
     let itemValid = addItensCart(qtde);
 
     if(itemValid) {
-      Alert.alert('Item adicionado ao carrinho com sucesso!');
+      Alert.alert('Item adicionado', 'Item adicionado ao carrinho com sucesso!');
       closeModal();
       return; 
     }

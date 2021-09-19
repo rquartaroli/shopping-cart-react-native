@@ -89,7 +89,7 @@ export function ItensCart() {
       }
     }
 
-    Alert.alert('Opa, você atingiu a quantidade máxima desse item no estoque');
+    Alert.alert('Limite excedido!', 'Você atingiu a quantidade máxima desse item no estoque');
     return; 
   }
 
