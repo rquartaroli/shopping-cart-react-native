@@ -18,6 +18,10 @@
 
 <br>
 
+<p align="center">
+  <img src=".github/eStore.gif" alt="ViewEStore" width="300">
+</p>
+
 ## 🚀 Tecnologias
 
 Esse projeto foi desenvolvido com as seguintes tecnologias:
@@ -61,9 +65,9 @@ Após instalar as dependências, você já pode estar iniciando a aplicação co
 expo start
 ```
 
-Observação: A configuração atual funcionará normalmente se a aplicação for executada no emulador do Android Studio.
+<b>Observação:</b> A configuração atual funcionará normalmente se a aplicação for executada no emulador do Android Studio.
 
-Opcional: Dispositivo Físico (Mobile).
+<b>Opcional: Dispositivo Físico (Mobile).</b><br>
 Caso queira executar em seu dispositivo físico, altere a config da baseURL que se encontra no arquivo `api.ts`, caminho `src/services/api.ts` para o IP de sua máquina local.
 Exemplo: 
 ```bash
@@ -77,8 +81,8 @@ Exemplo:
 ```
 Lembrando que seu dispositivo físico precisa estar conectado na mesma rede que sua máquina local.
 
-Agora, tanto para o emulador do Android Studio, quanto para o dispositivo físico(caso tenha escolhido essa opção), será necessário deixar rodando o JSON Server antes de executar a aplicação para que tudo funcione normalmente.
-Executando o JSON Server:
+Agora, tanto para o emulador do Android Studio, quanto para o dispositivo físico(caso tenha escolhido essa opção), abra outro terminal e deixe rodando o [JSON-Server](https://github.com/typicode/json-server) antes de executar a aplicação para que tudo funcione normalmente.
+Executando o [JSON-Server](https://github.com/typicode/json-server):
 ```bash
 yarn server
 ```
